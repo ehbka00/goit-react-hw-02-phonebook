@@ -1,0 +1,7 @@
+.form__name-wrapper, .form__number-wrapper {
+    padding: 10px 0;
+}
+.form {
+    border: 1px solid;
+    padding: 5px 10px;
+}
