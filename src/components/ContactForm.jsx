@@ -1,4 +1,4 @@
-import '../css/form.css'
+import "../css/form.css";
 
 export const ContactForm = ({ handleAddContact }) => {
   return (
@@ -13,7 +13,7 @@ export const ContactForm = ({ handleAddContact }) => {
           <input type="text" name="number" required />
         </div>
 
-        <button type="submit" className='btn' onClick={handleAddContact}>
+        <button type="submit" className="btn" onClick={handleAddContact}>
           Add contact
         </button>
       </div>
