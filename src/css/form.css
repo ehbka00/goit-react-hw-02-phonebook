@@ -1,4 +1,12 @@
 .form__name-wrapper, .form__number-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.form__name-wrapper input, .form__number-wrapper input {
+    width: 180px;
+    margin-top: 10px;
+}
+.form__name-wrapper, .form__number-wrapper {
     padding: 10px 0;
 }
 .form {

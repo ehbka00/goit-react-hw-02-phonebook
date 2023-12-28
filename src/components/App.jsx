@@ -1,10 +1,10 @@
-import { nanoid } from "nanoid";
 import { Component } from "react";
 import { ContactForm } from "./ContactForm";
 import { Filter } from "./Filter";
 import { ContactList } from "./ContactList";
 
 export class App extends Component {
+
   state = {
     contacts: [
       { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -20,24 +20,15 @@ export class App extends Component {
     this.setState({ filter: filtesredStr });
   };
 
-  handleAddContact = (evt) => {
-    evt.preventDefault();
-    const name = document.querySelector('input[name="name"]').value;
-    const number = document.querySelector('input[name="number"]').value;
-
-    if (this.contactVerification(name) === false) {
-      return;
+  addNewContact = newContact => {
+    if (this.contactVerification(newContact.name)) {
+        alert(newContact.name + " is already in contacts.");
+        return;
     }
-
-    const newContact = {
-      id: nanoid(),
-      name: name,
-      number: number,
-    };
-
-    this.setState({ contacts: [...this.state.contacts, newContact] });
-    document.querySelector(".form").reset();
-  };
+    this.setState((prevState) => ({
+      contacts: [...prevState.contacts, newContact],
+    }));
+  }
 
   handleDeleteContact = (evt) => {
     const parentNode = evt.target.parentNode;
@@ -51,20 +42,14 @@ export class App extends Component {
   };
 
   contactVerification = (name) => {
-    if (name.length === 0) {
-      alert("Name should not be empty.");
-      return false;
-    }
-
     const contactExists = this.state.contacts.some(
       (contact) => contact.name === name,
     );
     if (contactExists) {
-      alert(name + " is already in contacts.");
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   };
 
   render() {
@@ -72,7 +57,9 @@ export class App extends Component {
       <div>
         <div className="phonebook">
           <h1>Phonebook</h1>
-          <ContactForm handleAddContact={this.handleAddContact} />
+          <ContactForm 
+            onSubmit={this.addNewContact}
+          />
         </div>
 
         <div className="contacts">
