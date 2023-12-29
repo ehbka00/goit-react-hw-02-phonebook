@@ -8,7 +8,7 @@ export class ContactForm extends Component {
   state = {
     name: "",
     number: "",
-    id: nanoid(),
+    id: "",
   };
 
   nameId = nanoid();
@@ -22,9 +22,10 @@ export class ContactForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     
-    this.setState({id: nanoid()})
-    this.props.onSubmit(this.state);
-    this.reset();
+    this.setState({id: nanoid()}, () => {
+      this.props.onSubmit(this.state);
+      this.reset();
+    })
   };
 
   reset = () => {

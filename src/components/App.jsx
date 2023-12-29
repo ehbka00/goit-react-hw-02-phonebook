@@ -25,9 +25,11 @@ export class App extends Component {
         alert(newContact.name + " is already in contacts.");
         return;
     }
+    console.log(newContact)
     this.setState((prevState) => ({
       contacts: [...prevState.contacts, newContact],
     }));
+    console.log(this.state)
   }
 
   handleDeleteContact = (evt) => {
